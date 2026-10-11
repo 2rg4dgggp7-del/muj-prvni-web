@@ -3,55 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Filip Löbel | Profesionální fotograf: portréty, mazlíčci, svatby</title>
-  <meta name="description" content="Profesionální focení portrétů, mazlíčků a svateb. Přirozené fotografie, které vám zůstanou.">
+  <title>Filip Löbel | Fotograf: portréty, mazlíčci, svatby</title>
+  <meta name="description" content="Profesionální focení portrétů, mazlíčků a svateb. Přirozené fotografie s atmosférou, které vám zůstanou.">
+  <meta name="theme-color" content="#f7f5f2">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="hlavicka">
-    <a class="logo" href="index.html">Filip Löbel</a>
-    <a class="telefon" href="tel:+420725003444">+420 725 003 444 </a>
+    <a class="logo" href="#top">Filip Löbel</a>
+    <nav class="menu">
+      <a href="#portrety">Portréty</a>
+      <a href="#mazlicci">Mazlíčci</a>
+      <a href="#svatby">Svatby</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
-  <main>
-    <section class="uvod">
-      <h1>Fotografie, které vyprávějí váš příběh</h1>
-      <p>Portréty, mazlíčci, svatby a profesionální focení. Přirozeně, bez křeče a s ohledem na to, kdo opravdu jste.</p>
-      <a class="tlacitko" href="#poptavka">Napište mi</a>
-    </section>
+  <main id="top">
 
-    <section class="sluzby">
-      <h2>Co fotím</h2>
-      <div class="karty">
-        <article class="karta">
-          <h3>Portréty</h3>
-          <p>Osobní i profesní portréty v ateliéru nebo v exteriéru.</p>
-        </article>
-        <article class="karta">
-          <h3>Mazlíčci</h3>
-          <p>Fotografie vašich čtyřnohých členů rodiny v jejich přirozeném prostředí.</p>
-        </article>
-        <article class="karta">
-          <h3>Svatby</h3>
-          <p>Zachycení emocí, detailů a okamžiků, které se nevrátí.</p>
-        </article>
-        <article class="karta">
-          <h3>Profesionální focení</h3>
-          <p>Firemní, produktové a komerční fotografie pro web i sociální sítě.</p>
-        </article>
+    <section class="uvod">
+      <img src="img/uvod.jpg" alt="Fotografie z tvorby Filipa Löbela" fetchpriority="high">
+      <div class="uvod-text">
+        <h1>Fotografie s&nbsp;atmosférou</h1>
+        <p>Portréty, mazlíčci, svatby</p>
       </div>
     </section>
 
-    <section class="vyzva" id="poptavka">
-      <h2>Chcete se domluvit?</h2>
-      <p>Napište nebo zavolejte, probereme, co potřebujete, a navrhnu termín.</p>
-      <a class="tlacitko" href="tel:+420725003444">Zavolat</a>
+    <section class="o-mne">
+      <p>Fotím přirozeně, v&nbsp;dobrém světle a bez křeče. Cílem je, aby fotografie ukázala, kdo opravdu jste, a aby vám za pár let pořád dělala radost.</p>
     </section>
+
+    <section class="kategorie" id="portrety">
+      <h2>Portréty</h2>
+      <p class="popis">Osobní i profesní portréty, v&nbsp;přírodě i ve městě.</p>
+      <div class="galerie">
+        <figure><img src="img/portret-1.jpg" alt="Muž stojící u mlžného horského jezera" loading="lazy"></figure>
+        <figure><img src="img/portret-2.jpg" alt="Portrét" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="kategorie" id="mazlicci">
+      <h2>Mazlíčci</h2>
+      <p class="popis">Vaši čtyřnozí kamarádi tak, jak je znáte.</p>
+      <div class="galerie">
+        <figure><img src="img/mazlicek-1.jpg" alt="Pes při pohledu shora v podzimní trávě" loading="lazy"></figure>
+        <figure><img src="img/mazlicek-2.jpg" alt="Fotografie mazlíčka" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="kategorie" id="svatby">
+      <h2>Svatby</h2>
+      <p class="popis">Emoce, detaily a okamžiky, které se už nevrátí.</p>
+      <div class="galerie">
+        <figure><img src="img/svatba-1.jpg" alt="Svatební fotografie" loading="lazy"></figure>
+        <figure><img src="img/svatba-2.jpg" alt="Svatební fotografie" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="kontakt" id="kontakt">
+      <h2>Domluvme se</h2>
+      <p>Napište mi, co máte na mysli, a navrhnu termín i postup.</p>
+      <p class="kontakt-udaje">
+        <a href="mailto:info@example.cz">info@example.cz</a><br>
+        <a href="tel:+420123456789">+420 123 456 789</a>
+      </p>
+    </section>
+
   </main>
 
   <footer class="paticka">
-    <p>&copy; 2026 Filip Löbel &middot; info@example.cz</p>
+    <p>&copy; 2026 Filip Löbel</p>
   </footer>
 
 </body>
