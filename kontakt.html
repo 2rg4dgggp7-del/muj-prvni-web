@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontakt | Filip Löbel</title>
+  <meta name="description" content="Napište mi, co máte na mysli. Domluvíme termín focení portrétů, mazlíčků nebo svatby.">
+  <meta name="theme-color" content="#f7f5f2">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hlavicka">
+   <nav class="menu">
+  <a href="index.html#o-mne">O mně</a>
+  <a href="index.html#cenik">Ceník</a>
+  <a href="kontakt.html" class="aktivni">Kontakt</a>
+</nav>
+  </header>
+
+  <main class="stranka-kontakt">
+
+    <section class="kontakt-uvod">
+      <h1>Domluvme se</h1>
+      <p>Napište mi, co byste chtěli nafotit. Ozvu se vám zpravidla do dvou dnů.</p>
+    </section>
+
+    <section class="formular-obal">
+      <form id="formular" class="formular" novalidate>
+
+        <div class="pole">
+          <label for="jmeno">Jméno</label>
+          <input type="text" id="jmeno" name="name" required autocomplete="name">
+        </div>
+
+        <div class="pole">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="pole">
+          <label for="telefon">Telefon <span class="nepovinne">(nepovinné)</span></label>
+          <input type="tel" id="telefon" name="phone" autocomplete="tel">
+        </div>
+
+        <div class="pole">
+          <label for="typ">Co chcete fotit?</label>
+          <select id="typ" name="typ" required>
+            <option value="">Vyberte…</option>
+            <option>Portrét</option>
+            <option>Mazlíček</option>
+            <option>Svatba</option>
+            <option>Profesionální / firemní focení</option>
+            <option>Něco jiného</option>
+          </select>
+        </div>
+
+        <div class="pole">
+          <label for="termin">Předběžný termín <span class="nepovinne">(nepovinné)</span></label>
+          <input type="text" id="termin" name="termin" placeholder="např. květen 2027">
+        </div>
+
+        <div class="pole">
+          <label for="zprava">Zpráva</label>
+          <textarea id="zprava" name="message" rows="6" required></textarea>
+        </div>
+
+        <div class="souhlas">
+          <input type="checkbox" id="souhlas" required>
+          <label for="souhlas">Souhlasím se zpracováním osobních údajů za účelem odpovědi na mou zprávu.</label>
+        </div>
+
+        <button type="submit" class="tlacitko">Odeslat zprávu</button>
+        <p id="stav" class="stav" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="primy-kontakt">
+        <h2>Nebo přímo</h2>
+        <p>
+          <a href="mailto:info@example.cz">info@example.cz</a><br>
+          <a href="tel:+420123456789">+420 123 456 789</a>
+        </p>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="paticka">
+    <p>&copy; 2026 Filip Löbel</p>
+  </footer>
+
+  <script>
+    const formular = document.getElementById("formular");
+    const stav = document.getElementById("stav");
+
+    formular.addEventListener("submit", (udalost) => {
+      udalost.preventDefault();
+
+      if (!formular.checkValidity()) {
+        formular.reportValidity();
+        return;
+      }
+
+      formular.reset();
+      stav.className = "stav ok";
+      stav.textContent = "Děkuji, zpráva je odeslána. Brzy se vám ozvu.";
+    });
+  </script>
+
+</body>
+</html>

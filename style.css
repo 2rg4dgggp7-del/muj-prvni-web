@@ -159,3 +159,211 @@ a { color: inherit; }
   .hlavicka { padding: 18px 40px; }
   .uvod-text { padding: 100px 40px 56px; }
 }
+
+/* Kontaktní stránka */
+.menu a.aktivni { color: var(--accent); }
+
+.kontakt-uvod {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 72px 24px 16px;
+  text-align: center;
+}
+
+.kontakt-uvod h1 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.kontakt-uvod p { margin: 0; color: var(--muted); }
+
+.formular-obal {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  display: grid;
+  gap: 48px;
+}
+
+.pole { margin-bottom: 20px; }
+
+.pole label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nepovinne { text-transform: none; letter-spacing: 0; }
+
+.pole input,
+.pole select,
+.pole textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.pole input:focus,
+.pole select:focus,
+.pole textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.souhlas {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.souhlas input { margin-top: 5px; accent-color: var(--accent); }
+
+.formular .tlacitko {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+}
+
+.stav { margin-top: 16px; min-height: 1.5em; }
+.stav.ok { color: #2f6b3a; }
+
+.primy-kontakt h2 {
+  margin: 0 0 10px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.primy-kontakt a { text-decoration: none; }
+.primy-kontakt a:hover { color: var(--accent); }
+
+@media (min-width: 800px) {
+  .formular-obal { grid-template-columns: 2fr 1fr; gap: 64px; }
+}
+
+.pole input,
+.pole select,
+.pole textarea {
+  cursor: text;
+  caret-color: var(--accent);
+}
+
+.pole select { cursor: pointer; }
+
+/* Obecné tlačítko */
+.tlacitko {
+  display: inline-block;
+  padding: 13px 26px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+
+.tlacitko:hover { opacity: 0.88; }
+
+/* O mně */
+.profil {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 24px 24px;
+  display: grid;
+  gap: 32px;
+  scroll-margin-top: 60px;
+}
+
+.profil-foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.profil-text h2 {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.profil-text h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin-top: 10px;
+  background: var(--accent);
+}
+
+.profil-text p {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+.profil-text .tlacitko { margin-top: 8px; }
+
+/* Ceník */
+.ceny { display: grid; gap: 16px; }
+
+.cena {
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.cena h3 {
+  margin: 0 0 4px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.cena .od {
+  margin: 0 0 16px;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cena ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.cena li { margin-bottom: 6px; }
+
+.cena-pozn { margin: 32px 0 0; text-align: center; }
+
+@media (min-width: 700px) {
+  .ceny { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 800px) {
+  .profil { grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; }
+}
+
+@media (min-width: 1000px) {
+  .ceny { grid-template-columns: repeat(4, 1fr); }
+}
