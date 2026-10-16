@@ -29,13 +29,37 @@
 
   <main id="top">
 
-    <section class="uvod">
+ <section class="uvod" aria-roledescription="carousel" aria-label="Úvodní fotografie">
+  <div class="slider-track">
+    <div class="slide" data-i="0">
       <img src="img/uvod.jpg" alt="Fotografie z tvorby Filipa Löbela" fetchpriority="high">
-      <div class="uvod-text">
-        <h1>Fotografie s&nbsp;atmosférou</h1>
-        <p>Portréty, mazlíčci, svatby</p>
-      </div>
-    </section>
+    </div>
+    <div class="slide" data-i="1">
+      <img src="img/uvod-2.jpg" alt="Fotografie z tvorby Filipa Löbela">
+    </div>
+    <div class="slide" data-i="2">
+      <img src="img/uvod-3.jpg" alt="Fotografie z tvorby Filipa Löbela">
+    </div>
+  </div>
+
+  <div class="uvod-text">
+    <h1>Fotografie s&nbsp;atmosférou</h1>
+    <p>Portréty, mazlíčci, svatby</p>
+  </div>
+
+  <button class="sipka sipka-vlevo" type="button" aria-label="Předchozí fotografie">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="sipka sipka-vpravo" type="button" aria-label="Další fotografie">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+
+  <div class="tecky">
+    <button class="tecka aktivni" type="button" aria-label="Fotografie 1" aria-current="true"></button>
+    <button class="tecka" type="button" aria-label="Fotografie 2" aria-current="false"></button>
+    <button class="tecka" type="button" aria-label="Fotografie 3" aria-current="false"></button>
+  </div>
+</section>
 
     <section class="profil" id="o-mne">
       <div class="profil-foto">
@@ -140,5 +164,118 @@
     <p>&copy; 2026 Filip Löbel</p>
   </footer>
 
+  <script>
+  (function () {
+    const slider = document.querySelector(".uvod");
+    if (!slider) return;
+
+    const track = slider.querySelector(".slider-track");
+    const dots = slider.querySelectorAll(".tecka");
+    const btnPrev = slider.querySelector(".sipka-vlevo");
+    const btnNext = slider.querySelector(".sipka-vpravo");
+
+    const INTERVAL = 5000; // čas mezi fotkami v ms
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const DURATION = reduced ? 0 : 800; // délka posunu v ms
+
+    let busy = false;
+    let timer = null;
+
+    function setActive(i) {
+      dots.forEach(function (d, n) {
+        d.classList.toggle("aktivni", n === i);
+        d.setAttribute("aria-current", n === i ? "true" : "false");
+      });
+    }
+
+    function animation() {
+      return DURATION ? "transform " + DURATION + "ms ease" : "none";
+    }
+
+    function slideNext(target) {
+      if (busy) return;
+      busy = true;
+
+      if (target && target !== track.children[1]) {
+        track.insertBefore(target, track.children[1]);
+      }
+
+      setActive(Number(track.children[1].dataset.i));
+      void track.offsetWidth;
+      track.style.transition = animation();
+      track.style.transform = "translateX(-100%)";
+
+      setTimeout(function () {
+        track.style.transition = "none";
+        track.appendChild(track.firstElementChild);
+        track.style.transform = "translateX(0)";
+        void track.offsetWidth;
+        busy = false;
+      }, DURATION + 20);
+    }
+
+    function slidePrev() {
+      if (busy) return;
+      busy = true;
+
+      track.style.transition = "none";
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      track.style.transform = "translateX(-100%)";
+      void track.offsetWidth;
+
+      setActive(Number(track.firstElementChild.dataset.i));
+      track.style.transition = animation();
+      track.style.transform = "translateX(0)";
+
+      setTimeout(function () { busy = false; }, DURATION + 20);
+    }
+
+    function start() {
+      stop();
+      if (!reduced) timer = setInterval(function () { slideNext(); }, INTERVAL);
+    }
+
+    function stop() {
+      clearInterval(timer);
+    }
+
+    btnNext.addEventListener("click", function () { slideNext(); start(); });
+    btnPrev.addEventListener("click", function () { slidePrev(); start(); });
+
+    dots.forEach(function (dot, n) {
+      dot.addEventListener("click", function () {
+        if (Number(track.firstElementChild.dataset.i) === n) return;
+        const target = Array.from(track.children).find(function (s) {
+          return Number(s.dataset.i) === n;
+        });
+        slideNext(target);
+        start();
+      });
+    });
+
+    // Přejetí prstem na mobilu
+    let x0 = null;
+    slider.addEventListener("touchstart", function (e) {
+      x0 = e.touches[0].clientX;
+    }, { passive: true });
+    slider.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) {
+        if (dx < 0) slideNext(); else slidePrev();
+        start();
+      }
+    });
+
+    // Když je záložka skrytá, slider se zastaví
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    setActive(0);
+    start();
+  })();
+</script>
 </body>
 </html>

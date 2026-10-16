@@ -60,7 +60,7 @@ a { color: inherit; }
 .menu a:hover { color: var(--accent); }
 
 /* Úvod s velkou fotkou */
-.uvod { position: relative; height: 60vh; height: 60svh; min-height: 360px; max-height: 640px; }
+.uvod { position: relative; height: 75vh; height: 75svh; min-height: 420px; max-height: 640px; }
 .uvod img { width: 100%; height: 100%; object-fit: cover; }
 
 .uvod-text {
@@ -448,4 +448,81 @@ a { color: inherit; }
     padding: 8px 22px;
     white-space: nowrap;
   }
+}
+
+/* Slider v úvodu */
+.uvod { overflow: hidden; }
+
+.slider-track { display: flex; height: 100%; }
+
+.slide { flex: 0 0 100%; height: 100%; }
+
+.uvod-text { padding-bottom: 76px; pointer-events: none; }
+
+.sipka {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.sipka:hover,
+.sipka:focus-visible {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: #fff;
+}
+
+.sipka svg { width: 20px; height: 20px; }
+
+.sipka-vlevo { left: 16px; }
+.sipka-vpravo { right: 16px; }
+
+.tecky {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.tecka {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tecka::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.tecka.aktivni { background: #fff; }
+
+@media (max-width: 600px) {
+  .sipka { width: 38px; height: 38px; }
+  .sipka-vlevo { left: 10px; }
+  .sipka-vpravo { right: 10px; }
 }
