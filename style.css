@@ -526,3 +526,30 @@ a { color: inherit; }
   .sipka-vlevo { left: 10px; }
   .sipka-vpravo { right: 10px; }
 }
+
+/* Kategorie ve dvojicích na úvodní stránce */
+.kategorie-rada {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  gap: 56px;
+}
+
+.kategorie-rada .kategorie {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.kategorie-rada .galerie {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 900px) {
+  .kategorie-rada {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+}
